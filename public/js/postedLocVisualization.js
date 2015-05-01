@@ -74,6 +74,7 @@ d3.json('/igMediaCounts', function(error, data) {
         .attr("y", function(d) { return scaleY(d.counts.media); })
         .attr("height", function(d) { return h - scaleY(d.counts.media); })
         .on('mouseover',function(d){
+            d3.select(this).style("cursor","hand");
             return chart_tip.show(d);
         })
         .on('mousemove', function(){
@@ -82,6 +83,7 @@ d3.json('/igMediaCounts', function(error, data) {
                 .style("left",(d3.event.pageX+16)+"px");
         })
         .on('mouseout',function(d){
+            d3.select(this).style("cursor","pointer");
             return chart_tip.hide(d);
         })
         .on('click',function(d){

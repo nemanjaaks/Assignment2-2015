@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0e7f318b-93b1-407e-be2d-6487611bb185" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/mainpage.handlebars" afterPath="$PROJECT_DIR$/views/mainpage.handlebars" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/postedLocVisualization.js" afterPath="$PROJECT_DIR$/public/js/postedLocVisualization.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Assignment2-2015.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,11 +36,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mainpage.handlebars" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="mainpage.handlebars" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/mainpage.handlebars">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.07364976" vertical-offset="2070" max-vertical-offset="2805">
-              <caret line="141" column="43" selection-start-line="141" selection-start-column="43" selection-end-line="141" selection-end-column="43" />
+            <state vertical-scroll-proportion="-33.75" vertical-offset="1725" max-vertical-offset="2805">
+              <caret line="169" column="18" selection-start-line="169" selection-start-column="18" selection-end-line="169" selection-end-column="18" />
               <folding>
                 <element signature="n#style#0;n#footer#0;n#div#2;n#!!top" expanded="true" />
               </folding>
@@ -117,13 +118,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="postedLocVisualization.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="postedLocVisualization.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/postedLocVisualization.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="4720" max-vertical-offset="5415">
-              <caret line="327" column="10" selection-start-line="327" selection-start-column="10" selection-end-line="327" selection-end-column="10" />
+            <state vertical-scroll-proportion="0.63779527" vertical-offset="870" max-vertical-offset="5445">
+              <caret line="85" column="54" selection-start-line="85" selection-start-column="54" selection-end-line="85" selection-end-column="54" />
               <folding>
-                <marker date="1430456442000" expanded="false" signature="5606:5615" placeholder="..." />
+                <marker date="1430498231000" expanded="false" signature="5713:5722" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -151,7 +152,6 @@
         <option value="$PROJECT_DIR$/public/js/visualization.js" />
         <option value="$PROJECT_DIR$/models.js" />
         <option value="$PROJECT_DIR$/public/js/c3visualization.js" />
-        <option value="$PROJECT_DIR$/public/js/postedLocVisualization.js" />
         <option value="$PROJECT_DIR$/public/css/mainpagelayout.css" />
         <option value="$PROJECT_DIR$/views/login.handlebars" />
         <option value="$PROJECT_DIR$/.env" />
@@ -159,6 +159,7 @@
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/views/mainpage.handlebars" />
+        <option value="$PROJECT_DIR$/public/js/postedLocVisualization.js" />
       </list>
     </option>
   </component>
@@ -396,7 +397,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="390" max-vertical-offset="855">
           <caret line="28" column="3" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
           <folding>
-            <marker date="1430456442000" expanded="false" signature="5606:5615" placeholder="..." />
+            <marker date="1430498231000" expanded="false" signature="5713:5722" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -663,16 +664,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/postedLocVisualization.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4720" max-vertical-offset="5415">
-          <caret line="327" column="10" selection-start-line="327" selection-start-column="10" selection-end-line="327" selection-end-column="10" />
-          <folding>
-            <marker date="1430456442000" expanded="false" signature="5606:5615" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/css/mainpagelayout.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="4077" max-vertical-offset="5670">
@@ -723,10 +714,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/mainpage.handlebars">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.07364976" vertical-offset="2070" max-vertical-offset="2805">
-          <caret line="141" column="43" selection-start-line="141" selection-start-column="43" selection-end-line="141" selection-end-column="43" />
+        <state vertical-scroll-proportion="-33.75" vertical-offset="1725" max-vertical-offset="2805">
+          <caret line="169" column="18" selection-start-line="169" selection-start-column="18" selection-end-line="169" selection-end-column="18" />
           <folding>
             <element signature="n#style#0;n#footer#0;n#div#2;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/postedLocVisualization.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.63779527" vertical-offset="870" max-vertical-offset="5445">
+          <caret line="85" column="54" selection-start-line="85" selection-start-column="54" selection-end-line="85" selection-end-column="54" />
+          <folding>
+            <marker date="1430498231000" expanded="false" signature="5713:5722" placeholder="..." />
           </folding>
         </state>
       </provider>
