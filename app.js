@@ -156,7 +156,7 @@ app.get('/', function(req, res){
 app.get('/login', function(req, res){
   res.render('login', { user: req.user });
 });
-
+/*
 app.get('/account', ensureAuthenticated, function(req, res){
   res.render('account', {user: req.user});
 });
@@ -185,7 +185,7 @@ app.get('/igphotos', ensureAuthenticatedInstagram, function(req, res){
     }
   });
 });
-
+*/
 app.get('/igMediaCounts', ensureAuthenticatedInstagram, function(req, res){
   var query  = models.User.where({ ig_id: req.user.ig_id });
   query.findOne(function (err, user) {
@@ -299,24 +299,25 @@ app.get('/igRecentMedia', ensureAuthenticatedInstagram,function(req,res){
    });
 });
 
-app.get('/visualization', ensureAuthenticatedInstagram, function (req, res){
-  res.render('visualization');
-});
-
 app.get('/main', ensureAuthenticatedInstagram, function (req, res){
     //console.log(req.user);
     res.render('mainpage', {user:req.user});
 });
-
+/*
 app.get('/locationVisualization', ensureAuthenticatedInstagram,function(req,res){
     res.render('locationVisualization');
 });
 
 
+ app.get('/visualization', ensureAuthenticatedInstagram, function (req, res){
+ res.render('visualization');
+ });
+
+
 app.get('/c3visualization', ensureAuthenticatedInstagram, function (req, res){
   res.render('c3visualization');
 }); 
-
+*/
 app.get('/auth/instagram',
   passport.authenticate('instagram'),
   function(req, res){
