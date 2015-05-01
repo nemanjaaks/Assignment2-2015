@@ -1,4 +1,5 @@
 //dependencies for each module used
+var request = require('request');
 var express = require('express');
 var passport = require('passport');
 var InstagramStrategy = require('passport-instagram').Strategy;
@@ -12,6 +13,7 @@ var dotenv = require('dotenv');
 var mongoose = require('mongoose');
 var Instagram = require('instagram-node-lib');
 var async = require('async');
+var fs = require('fs');
 var app = express();
 
 //local dependencies
@@ -72,6 +74,10 @@ passport.use(new InstagramStrategy({
         newUser = new models.User({
           name: profile.username, 
           ig_id: profile.id,
+          photo: profile._json.data.profile_picture,
+          follows_count : profile._json.data.counts.follows,
+          follower_count :profile._json.data.counts.followed_by,
+          media_count : profile._json.data.counts.media,
           ig_access_token: accessToken
         });
 
@@ -86,6 +92,10 @@ passport.use(new InstagramStrategy({
       } else {
         //update user here
         user.ig_access_token = accessToken;
+        user.photo=profile._json.data.profile_picture;
+          user.follows_count = profile._json.data.counts.follows;
+          user.follower_count = profile._json.data.counts.followed_by;
+          user.media_count = profile._json.data.counts.media;
         user.save();
         process.nextTick(function () {
           // To keep the example simple, the user's Instagram profile is returned to
@@ -202,13 +212,14 @@ app.get('/igMediaCounts', ensureAuthenticatedInstagram, function(req, res){
                 });            
             });
           });
-          
+
+
           // Now we have an array of functions, each containing an async task
           // Execute all async tasks in the asyncTasks array
           async.parallel(asyncTasks, function(err){
             // All tasks are done now
             if (err) return err;
-            return res.json({users: mediaCounts});        
+            return res.json({users: mediaCounts, mainuser:req.user});
           });
         }
       });   
@@ -216,9 +227,90 @@ app.get('/igMediaCounts', ensureAuthenticatedInstagram, function(req, res){
   });
 });
 
+
+app.get('/igRecentMedia', ensureAuthenticatedInstagram,function(req,res){
+   var query = models.User.where({ig_id:req.user.ig_id});
+   query.findOne(function(err,user){
+      if(err) return err;
+      if(user){
+          Instagram.users.liked_by_self({
+              user_id:user.ig_id,
+              count: 1000,
+              access_token: user.ig_access_token,
+              complete: function (data,pagination) {
+                  var locations = [];
+                  var asyncTasks = [];
+                  var counter = 0;
+                  var chunk = {'pagination': pagination, 'data': data};
+                  //console.log(data);
+                  //console.log(chunk.data);
+                  //console.log(chunk.pagination);
+
+
+                  data.forEach(function (item) {
+                      if (item.location != null && item.location.latitude) {
+                          locations.push(item);
+                      }
+                  });
+
+                  var url = chunk.pagination.next_url;
+                  var counter = 0;
+                  var finished = false;
+
+                  //Execute async whilst to get all pictures liked by a user (that contain a location), due to limit of 33 per req
+
+                  async.whilst(
+                      function(){
+                          console.log(url);
+                          return (url!=undefined);},
+                      function(callback){
+                          request({
+                              url: url,
+                              json: true
+                          }, function (error, response, body) {
+                              if (!error && response.statusCode === 200) {
+                                  var newChunk = {'pagination': pagination, 'data': data};
+                                  newChunk.pagination = body.pagination;
+                                  newChunk.data = body.data;
+
+                                  newChunk.data.forEach(function (i) {
+                                      //console.log("ADDED");
+                                      if (i.location != null && i.location.latitude) {
+                                          locations.push(i);
+                                      }
+                                      //console.log(locations.length);
+                                  });
+                                  url = newChunk.pagination.next_url;
+                                  //console.log("URL IN NEWCHUNK: " + newChunk.pagination.next_url);
+                                  callback();
+
+                              }
+                          });
+                      },
+                      function(err){
+                          if (err) return err;
+                          console.log("DO NE");
+                          return res.json({users: locations});
+                      }
+                  );
+              }
+            });
+          }
+   });
+});
+
 app.get('/visualization', ensureAuthenticatedInstagram, function (req, res){
   res.render('visualization');
-}); 
+});
+
+app.get('/main', ensureAuthenticatedInstagram, function (req, res){
+    //console.log(req.user);
+    res.render('mainpage', {user:req.user});
+});
+
+app.get('/locationVisualization', ensureAuthenticatedInstagram,function(req,res){
+    res.render('locationVisualization');
+});
 
 
 app.get('/c3visualization', ensureAuthenticatedInstagram, function (req, res){
@@ -235,7 +327,7 @@ app.get('/auth/instagram',
 app.get('/auth/instagram/callback', 
   passport.authenticate('instagram', { failureRedirect: '/login'}),
   function(req, res) {
-    res.redirect('/account');
+    res.redirect('/main');
   });
 
 app.get('/logout', function(req, res){

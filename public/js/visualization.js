@@ -1,14 +1,15 @@
+
 var margin = {top: 20, right: 20, bottom: 100, left: 40};
-var width = 960 - margin.left - margin.right;
-var height = 500 - margin.top - margin.bottom;
+var w = 960 - margin.left - margin.right;
+var h= 500 - margin.top - margin.bottom;
 
 //define scale of x to be from 0 to width of SVG, with .1 padding in between
 var scaleX = d3.scale.ordinal()
-  .rangeRoundBands([0, width], .1);
+  .rangeRoundBands([0, w], .1);
 
 //define scale of y to be from the height of SVG to 0
 var scaleY = d3.scale.linear()
-  .range([height, 0]);
+  .range([h, 0]);
 
 //define axes
 var xAxis = d3.svg.axis()
@@ -20,9 +21,9 @@ var yAxis = d3.svg.axis()
   .orient("left");
 
 //create svg
-var svg = d3.select("body").append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
+var svg = d3.select("body").selectAll("#media-chart").append("svg")
+  .attr("width", w + margin.left + margin.right)
+  .attr("height", h + margin.top + margin.bottom)
   .append("g")
   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 

@@ -1,0 +1,29 @@
+
+<h1 class="container-fluid">Location Visualization</h1>
+
+<div class="container outside">
+    <div class="inside-worldmap">
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog  modal_size">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <img id="head-img" class="img-circle small-profile-pic"/>
+                        <h4 class="modal-title" id="myModalLabel"></h4>
+                        <p class="glyphicon glyphicon-map-marker" id="locText"></p>
+                    </div>
+                    <div class="modal-body">
+                        <div class ="row" id="inside_body">
+                            <img id="photo" class="img-thumbnail"/>
+                            <p id="inside-paragraph"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="js/d3.tip.v0.6.3.js"></script>
+<script src="js/postedLocVisualization.js"></script>
